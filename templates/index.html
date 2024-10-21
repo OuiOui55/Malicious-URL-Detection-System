@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+ <div class="login">
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/index.css')}}">
+  
+</head>
+
+<body>
+
+<div class="bodi">
+ 
+	<h1>URL annalyser</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+    	<input type="text" name="experience" placeholder="Experience" required="required" size="50" />
+        
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+        </br>WhiteList Result = {{hidden_msg}}
+        </br>Validity of URL = {{status_value}}
+        </br>
+        </br>prediction level from NLP based model = {{ prediction_text }}
+        </br>prediction = {{ prediction_text1 }}
+        </br>Status (according to NLP = {{urlstatus}}
+        </br>
+        </br>URL_issued_to = {{URL_issued_to}}
+        </br>URL_issued_by = {{URL_issued_by}}
+        </br> Domain creation date = {{created_date}}
+        </br> Domain expiration date = {{expired_date}}
+        </br> Domain Age in days = {{domain_age}}
+		</br>Is IP in the URL ={{ip_in_url}}
+		</br>Does Special Characters contains in the URL = {{at_in_url}}
+		</br>Status of URL Length = {{url_length}}
+		</br>URL depth = {{url_depth}}
+		</br>Redirecting Status = {{url_redirect}}
+		</br>Certificate Status = {{url_https}}
+		</br>Shortning Service = {{url_tiny}}
+		</br>URL prefix = {{url_prefix}}
+		</br>DNS status = {{url_dnsrecord}}
+		</br>IFRAME status = {{url_iframe}}
+		</br>Redirect status = {{url_forward}}
+		</br>Mouse event = {{url_mouseover}}
+        </br> Prediction from featurebased model = {{featurebase_predict}}
+		</br>Scan Result from Virus Total = {{positives_html}} / {{total_html}}
+		</br><h1>Results</h1>
+    <ul>
+        {% for result in results_tuples %}
+            <li>Engine: {{ result.engine }}, Result: {{ result.result }}</li>
+        {% endfor %}
+    </ul>
+ 
+ 
+</div>
+</body>
+ </div>
+</html>
